@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="2.0">
+	<wb-module deploy-name="dataminingcloud.dmservice.rest">
+		<wb-resource deploy-path="/" source-path="src/main/groovy"/>
+	</wb-module>
+</project-modules>

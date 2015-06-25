@@ -1,0 +1,11 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'eclipse-wtp'
+
+dependencies {
+	compile project(':dataminingcloud.cep')   
+	
+    compile 'org.codehaus.groovy:groovy-all:2.3.10'
+}
+
+
