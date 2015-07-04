@@ -1,0 +1,427 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "DMC",
+    "description": "An API specification of DMC Engine service based on swagger-2.0 specification",
+    "version": "1.0.0"
+  },
+  "produces": ["application/json"],
+  "host": "localhost:8080",
+  "basePath": "/execute",
+  "paths": {
+  
+  "/ad_hoc": {
+    "post": {
+      "x-swagger-router-controller": "Default",
+      "tags": ["Default"],
+      "operationId": "adHocPost",
+      "parameters": [
+        
+        {
+  "in" : "body",
+  "name" : "body",
+  "required" : false,
+  "schema" : {
+    "$ref" : "#/definitions/ProcessAdhocExe"
+  }
+}
+        
+      ],
+      "responses": {
+        
+        "200": {
+  "description" : "OK",
+  "schema" : {
+    "$ref" : "#/definitions/ProcessMetadata"
+  }
+}
+        
+        
+      }
+    }
+  } ,
+  
+  "/ad_hoc/{exeKey}": {
+    "get": {
+      "x-swagger-router-controller": "Default",
+      "tags": ["Default"],
+      "operationId": "adHocExeKeyGet",
+      "parameters": [
+        
+        {
+  "name" : "exeKey",
+  "in" : "path",
+  "required" : true,
+  "type" : "string"
+}
+        
+      ],
+      "responses": {
+        
+        "200": {
+  "description" : "OK",
+  "schema" : {
+    "$ref" : "#/definitions/ProcessMetadata"
+  }
+}
+        
+        
+      }
+    }
+  } ,
+  
+  "/algorithms": {
+    "get": {
+      "x-swagger-router-controller": "Default",
+      "tags": ["Default"],
+      "operationId": "algorithmsGet",
+      "parameters": [
+        
+        {
+  "name" : "catalog",
+  "in" : "query",
+  "required" : false,
+  "type" : "string"
+}
+        
+      ],
+      "responses": {
+        
+        "200": {
+  "description" : "OK",
+  "schema" : {
+    "type" : "array",
+    "items" : {
+      "$ref" : "#/definitions/ProcesserAlgorithm"
+    }
+  }
+}
+        
+        
+      }
+    }
+  } ,
+  
+  "/flow": {
+    "get": {
+      "x-swagger-router-controller": "Default",
+      "tags": ["Default"],
+      "operationId": "flowGet",
+      "responses": {
+        
+        "200": {
+  "description" : "OK",
+  "schema" : {
+    "type" : "array",
+    "items" : {
+      "$ref" : "#/definitions/ProcessFlowMetadata"
+    }
+  }
+}
+        
+        
+      }
+    }
+  } ,
+  
+  "/flow": {
+    "post": {
+      "x-swagger-router-controller": "Default",
+      "tags": ["Default"],
+      "operationId": "flowPost",
+      "parameters": [
+        
+        {
+  "in" : "body",
+  "name" : "body",
+  "required" : false,
+  "schema" : {
+    "$ref" : "#/definitions/ProcessFlow"
+  }
+}
+        
+      ],
+      "responses": {
+        
+        "200": {
+  "description" : "OK",
+  "schema" : {
+    "$ref" : "#/definitions/ProcessFlowMetadata"
+  }
+}
+        
+        
+      }
+    }
+  } ,
+  
+  "/flow/{flowKey}": {
+    "get": {
+      "x-swagger-router-controller": "Default",
+      "tags": ["Default"],
+      "operationId": "flowFlowKeyGet",
+      "parameters": [
+        
+        {
+  "name" : "flowKey",
+  "in" : "path",
+  "required" : true,
+  "type" : "string"
+}
+        
+      ],
+      "responses": {
+        
+        "200": {
+  "description" : "OK",
+  "schema" : {
+    "$ref" : "#/definitions/ProcessFlowMetadata"
+  }
+}
+        
+        
+      }
+    }
+  } ,
+  
+  "/flow/{flowKey}/processes": {
+    "post": {
+      "x-swagger-router-controller": "Default",
+      "tags": ["Default"],
+      "operationId": "flowFlowKeyProcessesPost",
+      "parameters": [
+        
+        {
+  "name" : "flowKey",
+  "in" : "path",
+  "required" : true,
+  "type" : "string"
+},
+        
+        {
+  "in" : "body",
+  "name" : "body",
+  "required" : false,
+  "schema" : {
+    "$ref" : "#/definitions/DMData"
+  }
+}
+        
+      ],
+      "responses": {
+        
+        "200": {
+  "description" : "OK",
+  "schema" : {
+    "$ref" : "#/definitions/ProcessMetadata"
+  }
+}
+        
+        
+      }
+    }
+  } ,
+  
+  "/processes/{resultKey}": {
+    "get": {
+      "x-swagger-router-controller": "Default",
+      "tags": ["Default"],
+      "operationId": "processesResultKeyGet",
+      "parameters": [
+        
+        {
+  "name" : "resultKey",
+  "in" : "path",
+  "required" : true,
+  "type" : "string"
+}
+        
+      ],
+      "responses": {
+        
+        "200": {
+  "description" : "OK",
+  "schema" : {
+    "$ref" : "#/definitions/ProcessMetadata"
+  }
+}
+        
+        
+      }
+    }
+  } ,
+  
+  "/processes/{resultKey}/result": {
+    "get": {
+      "x-swagger-router-controller": "Default",
+      "tags": ["Default"],
+      "operationId": "processesResultKeyResultGet",
+      "parameters": [
+        
+        {
+  "name" : "resultKey",
+  "in" : "path",
+  "required" : true,
+  "type" : "string"
+}
+        
+      ],
+      "responses": {
+        
+        "200": {
+  "description" : "OK",
+  "schema" : {
+    "$ref" : "#/definitions/Process"
+  }
+}
+        
+        
+      }
+    }
+  } 
+  
+   
+  }, "definitions": {
+  "Domain": {
+  "properties" : {
+    "name" : {
+      "type" : "string"
+    },
+    "date" : {
+      "type" : "string",
+      "description" : "The domain in differnent date may different, think about the change of computer brand from 1995 to 2015 ."
+    },
+    "parentDomain" : {
+      "$ref" : "#/definitions/Domain"
+    }
+  }
+},"DMData": {
+  "properties" : {
+    "key" : {
+      "type" : "string"
+    },
+    "data" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/ColumnData"
+      }
+    }
+  }
+},"ColumnData": {
+  "properties" : {
+    "attribute" : {
+      "$ref" : "#/definitions/Attribute"
+    },
+    "data" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    }
+  }
+},"DataInfor": {
+  "properties" : {
+    "name" : {
+      "type" : "string"
+    },
+    "domain" : {
+      "$ref" : "#/definitions/Domain"
+    }
+  }
+},"Attribute": {
+  "properties" : {
+    "name" : {
+      "type" : "string"
+    },
+    "type" : {
+      "type" : "string"
+    },
+    "format" : {
+      "type" : "string"
+    },
+    "dataInfor" : {
+      "$ref" : "#/definitions/DataInfor"
+    }
+  }
+},"ProcessMetadata": {
+  "properties" : {
+    "key" : {
+      "type" : "string"
+    },
+    "status" : {
+      "type" : "string"
+    }
+  }
+},"Process": {
+  "properties" : {
+    "key" : {
+      "type" : "string"
+    },
+    "inputData" : {
+      "$ref" : "#/definitions/DMData"
+    },
+    "outputData" : {
+      "$ref" : "#/definitions/DMData"
+    },
+    "errors" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "warnings" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "logs" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    }
+  }
+},"ProcesserAlgorithm": {
+  "properties" : {
+    "key" : {
+      "type" : "string"
+    },
+    "name" : {
+      "type" : "string"
+    },
+    "description" : {
+      "type" : "string"
+    },
+    "tags" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "catalog" : {
+      "type" : "string",
+      "description" : "The catelog path of the trainer, classifier.decisionTree.id3"
+    }
+  }
+},"ProcessAdhocExe": {
+  "properties" : {
+    "key" : {
+      "type" : "string"
+    }
+  }
+},"ProcessFlow": {
+  "properties" : {
+    "key" : {
+      "type" : "string"
+    }
+  }
+},"ProcessFlowMetadata": {
+  "properties" : {
+    "key" : {
+      "type" : "string"
+    }
+  }
+}
+  }
+}
