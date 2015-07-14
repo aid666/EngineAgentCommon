@@ -1,18 +1,17 @@
 swagger: '2.0'
 info:
   version: 0.0.1
-  title: DMC
-  description: An API specification of DMC Engine service based on swagger-2.0 specification
+  title: DataMiningCloud Engine Service
+  description: An API specification of DataMiningCloud Engine service based on swagger-2.0 specification
   contact:
     name: DataMiningCloud API team
     email: aid666@gmail.com
   license:
     name: MIT
     url: 'http://opensource.org/licenses/MIT'
-host: dm-cloud.appspot.com
-basePath: /execute
+basePath: /engine
 schemes:
-  - https
+  - http
 consumes:
   - application/json
   - application/xml
@@ -20,15 +19,17 @@ produces:
   - application/json
   - application/xml
 paths:
-  #Executer Services
+
   /algorithms:
     get:
+      tags:
+      - Algorithms
       summary: Search processers metdata.
       description: Processers, it is actually execute code of any process flow. But this processer do not keep any model or paramter.
       parameters:
-        - in: query
-          name: catalog
-          type: string
+      - in: query
+        name: catalog
+        type: string
       responses:
         200:
           description: OK
@@ -39,11 +40,13 @@ paths:
 
   /ad_hoc:
     post:
+      tags:
+      - Ad_hoc
       parameters:
-        - name: body
-          in: body
-          schema:
-            $ref: '#/definitions/ProcessAdhocExe'
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/ProcessAdhocExe'
       responses:
         200:
           description: OK
@@ -52,10 +55,12 @@ paths:
 
   /ad_hoc/{exeKey}:
     get:
+      tags:
+      - Ad_hoc
       parameters:
-        - name: exeKey
-          in: path
-          type: string
+      - name: exeKey
+        in: path
+        type: string
       responses:
         200:
           description: OK
@@ -64,6 +69,8 @@ paths:
 
   /flow:
     get:
+      tags:
+      - Flow
       responses:
         200:
           description: OK
@@ -72,11 +79,13 @@ paths:
             items:
               $ref: '#/definitions/ProcessFlowMetadata'
     post:
+      tags:
+      - Flow
       parameters:
-        - name: body
-          in: body
-          schema:
-            $ref: '#/definitions/ProcessFlow'
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/ProcessFlow'
       responses:
         200:
           description: OK
@@ -85,10 +94,12 @@ paths:
 
   /flow/{flowKey}:
     get:
+      tags:
+      - Flow
       parameters:
-        - name: flowKey
-          in: path
-          type: string
+      - name: flowKey
+        in: path
+        type: string
       responses:
         200:
           description: OK
@@ -97,6 +108,8 @@ paths:
 
   /flow/{flowKey}/processes:
     post:
+      tags:
+      - Flow
       parameters:
       - name: flowKey
         in: path
@@ -113,10 +126,12 @@ paths:
 
   /processes/{resultKey}:
     get:
+      tags:
+      - Processes
       parameters:
-        - name: resultKey
-          in: path
-          type: string
+      - name: resultKey
+        in: path
+        type: string
       responses:
         200:
           description: OK
@@ -125,6 +140,8 @@ paths:
 
   /processes/{resultKey}/result:
     get:
+      tags:
+      - Processes
       parameters:
         - name: resultKey
           in: path
