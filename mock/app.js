@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var flow = require('./routes/flow');
 var algs = require('./routes/algs');
+var processes = require('./routes/processes');
 
 var app = express();
 
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, '../swagger-ui')));
 
 app.use('/engine/', flow);
 app.use('/engine/algorithms', algs);
+app.use('/engine/processes', processes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

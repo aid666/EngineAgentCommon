@@ -107,9 +107,25 @@ paths:
             $ref: '#/definitions/ProcessFlowMetadata'
 
   /flow/{flowKey}/processes:
+    get:
+      tags:
+      - Flow
+      - Processes
+      parameters:
+      - name: flowKey
+        in: path
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProcessMetadata'
     post:
       tags:
       - Flow
+      - Processes
       parameters:
       - name: flowKey
         in: path
@@ -124,6 +140,39 @@ paths:
           schema:
             $ref: '#/definitions/ProcessMetadata'
 
+
+  /flow/{flowKey}/processes/{procKey}:
+    get:
+      tags:
+      - Flow
+      - Processes
+      parameters:
+      - name: flowKey
+        in: path
+        type: string
+      - name: procKey
+        in: path
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ProcessMetadata'
+    delete:
+      tags:
+      - Flow
+      - Processes
+      parameters:
+      - name: flowKey
+        in: path
+        type: string
+      - name: procKey
+        in: path
+        type: string
+      responses:
+        204:
+          description: OK
+
   /processes/{resultKey}:
     get:
       tags:
@@ -136,7 +185,7 @@ paths:
         200:
           description: OK
           schema:
-            $ref: '#/definitions/ProcessMetadata'
+            $ref: '#/definitions/ProcessStatus'
 
   /processes/{resultKey}/result:
     get:
@@ -200,6 +249,13 @@ definitions:
         $ref: '#/definitions/DataInfor'
 
   ProcessMetadata:
+    properties:
+      key:
+        type: string
+      status:
+        type: string
+
+  ProcessStatus:
     properties:
       key:
         type: string
