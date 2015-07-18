@@ -1,5 +1,5 @@
-# DataMiningCloud Engine
-DMC Engine is a distribution process flow system which deploy and run DataMiningCloud services.
+# DataMiningCloud Engine Hub
+DMC Engine Service is a distribution process flow system which deploy and run DataMiningCloud services.
 
 ## Concepts
 
