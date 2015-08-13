@@ -1,0 +1,189 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: Engine Agent
+  description: An API specification of Engine Agent based on swagger-2.0 specification
+  contact:
+    name: DataMiningCloud API team
+    email: aid666@gmail.com
+  license:
+    name: MIT
+    url: 'http://opensource.org/licenses/MIT'
+basePath: /agent
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+
+  /capicity:
+    get:
+      tags:
+      - Capicity
+      summary: Check the status of Engine Agent
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Capicity'
+
+  /tasks:
+    get:
+      tags:
+      - Tasks
+      summary: Get the list of Engine Task
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TaskMetadata'
+
+    post:
+      tags:
+      - Tasks
+      summary: Push a new task
+      parameters:
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/Task'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/TaskMetadata'
+
+
+  /tasks/{key}:
+    get:
+      tags:
+      - Tasks
+      summary: Get the metadata of Engine Task
+      parameters:
+      - name: key
+        in: path
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/TaskMetadata'
+    delete:
+      tags:
+      - Tasks
+      summary: Delete a task
+      parameters:
+      - name: key
+        in: path
+        type: string
+      responses:
+        204:
+          description: OK
+
+  /tasks/{key}/details:
+    get:
+      tags:
+      - Tasks
+      summary: Get the details of Engine Task
+      parameters:
+      - name: key
+        in: path
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Task'
+
+  /tasks/{key}/logs:
+    get:
+      tags:
+      - Tasks
+      summary: Get the logs of Engine Task
+      parameters:
+      - name: key
+        in: path
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: string
+
+definitions:
+  Domain:
+    properties:
+      name:
+        type: string
+      date:
+        description: The domain in differnent date may different, think about the change of computer brand from 1995 to 2015 .
+        type: string
+      parentDomain:
+        $ref: '#/definitions/Domain'
+
+  DMData:
+    properties:
+      key:
+        type: string
+      data:
+        type: array
+        items:
+         $ref: '#/definitions/ColumnData'
+
+  ColumnData:
+    properties:
+      attribute:
+        $ref: '#/definitions/Attribute'
+      data:
+        type: array
+        items:
+          type: string
+
+  DataInfor:
+    properties:
+      name:
+        type: string
+      domain:
+        $ref: '#/definitions/Domain'
+
+  Attribute:
+    properties:
+      name:
+        type: string
+      type:
+        type: string
+      format:
+        type: string
+      dataInfor:
+        $ref: '#/definitions/DataInfor'
+
+  Capicity:
+    properties:
+      key:
+        type: string
+      status:
+        type: string
+      currentTasks:
+        type: integer
+      maxTasks:
+        type: integer
+
+  TaskMetadata:
+    properties:
+      key:
+        type: string
+      status:
+        type: string
+
+  Task:
+    properties:
+      key:
+        type: string
+      status:
+        type: string
