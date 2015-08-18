@@ -1,0 +1,8 @@
+rootProject.name = 'dmcloud'
+
+//JAVA
+include ':dmcloud.engine.client'
+include ':dmcloud.engine.server'
+
+//REST
+include ':dmcloud.engine.rest'

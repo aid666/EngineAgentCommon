@@ -1,4 +1,6 @@
 /node_modules
 mock/node_modules
 *.log
+build
+.gradle
 .DS_Store
