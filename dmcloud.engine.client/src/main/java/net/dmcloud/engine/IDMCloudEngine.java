@@ -1,15 +1,17 @@
 package net.dmcloud.engine;
 
 import net.dmcloud.engine.exceptions.*;
-import java.util.*;
+//import java.util.*;
 
 public interface IDMCloudEngine
 {
-    List<ITask> getTasks(Filter filter);
+    int getMaxTaskCount();
+    
+    //List<Task> getTasks(Filter filter);
 
-    ITask getTask(String key) throws EventNotFoundException;
+    Task getTask(String key) throws EventNotFoundException;
 
-    ITask createTask(IEvent event) throws EventNotFoundException;
+    Task createTask(Event event);
 
-    ITask stopTask(String key) throws EventNotFoundException;
+    //Task stopTask(String key) throws EventNotFoundException;
 }

@@ -2,7 +2,7 @@ package net.dmcloud.engine.data;
 
 import java.util.*;
 
-public class ArrayObservationProvider implements IObservationProvider
+public class ArrayObservationProvider
 {
 
 	private Observation[] _observ;

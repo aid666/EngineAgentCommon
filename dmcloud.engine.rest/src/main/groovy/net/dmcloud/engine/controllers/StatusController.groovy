@@ -9,17 +9,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
+import net.dmcloud.engine.*;
 import net.dmcloud.engine.controllers.model.*;
 
 @RestController
 @RequestMapping("/capicity")
 class StatusController
 {
-	private final Logger logger = LoggerFactory.getLogger(StatusController.class);
+		private final Logger logger = LoggerFactory.getLogger(StatusController.class);
 
+		@Autowired
+		private IDMCloudEngine _engine;
 
 		@RequestMapping(
-			value = "/{key}",
 			method = RequestMethod.GET,
 			produces = [ MediaType.APPLICATION_JSON_VALUE ] )
 		ResponseEntity<Capicity> fetchCapicity()
@@ -28,7 +30,7 @@ class StatusController
 				"mockKey",
 				"OK",
 				6,
-				12
+				_engine.getMaxTaskCount()
 			)
 			return new ResponseEntity<Capicity>( cap, HttpStatus.OK );
 		}

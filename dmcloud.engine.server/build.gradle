@@ -1,13 +1,14 @@
 apply plugin: 'java'
 apply plugin: 'groovy'
-apply plugin: 'spring-boot'
+apply plugin: 'eclipse-wtp'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-	  compile project(':dmcloud.engine.client')
-    compile 'nz.ac.waikato.cms.weka:weka-stable:3.6.6'
+		compile project(':dmcloud.engine.client')
+		compile 'nz.ac.waikato.cms.weka:weka-stable:3.6.6'
+		compile 'org.springframework.boot:spring-boot-starter-web:1.2.5.RELEASE'
 		compile 'org.springframework.batch:spring-batch-core:3.0.5.RELEASE'
 		compile 'org.springframework.boot:spring-boot-starter-batch:1.2.5.RELEASE'
 }

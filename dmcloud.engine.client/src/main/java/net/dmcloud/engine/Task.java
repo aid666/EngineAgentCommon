@@ -1,6 +1,6 @@
 package net.dmcloud.engine;
 
-public interface IEvent
+public class Task 
 {
 
 }
