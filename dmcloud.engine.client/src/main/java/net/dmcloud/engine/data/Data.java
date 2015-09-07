@@ -2,7 +2,7 @@ package net.dmcloud.engine.data;
 
 import net.dmcloud.engine.*;
 
-public abstract class Data extends Event
+public class Data extends Event
 {
 	private DataMetadata _metadata;
 	private Attribute[] _attrs;
