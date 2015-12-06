@@ -7,20 +7,27 @@ import net.dmcloud.engine.data.Data;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.core.Instances;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecutionListener;
+import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
 
-public class WekaNaiveClassifierJob extends NaiveBayes implements ItemProcessor<Data, Data> {
+@Configuration
+@EnableBatchProcessing
+public class WekaNaiveClassifierTrainerJob extends WekaNaiveClassifierJob {
 
-	private static final long serialVersionUID = 4536597731944078869L;
-
-	public WekaNaiveClassifierJob() {
+	public WekaNaiveClassifierTrainerJob() {
 	}
 
 	public void setModel(Attribute[] model) {
 		try {
 			setOptions(converterToWekaOptions(model));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -49,9 +56,5 @@ public class WekaNaiveClassifierJob extends NaiveBayes implements ItemProcessor<
 		return modelData;
 	}
 
-	public static Instances converterToInstance(Data input) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

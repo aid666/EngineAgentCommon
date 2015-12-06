@@ -9,11 +9,10 @@ import weka.core.Instances;
 
 import org.springframework.batch.item.ItemProcessor;
 
-public class WekaNaiveClassifierJob extends NaiveBayes implements ItemProcessor<Data, Data> {
+public class AbstractWekaNaiveClassifierJob extends WekaNaiveClassifierJob {
 
-	private static final long serialVersionUID = 4536597731944078869L;
 
-	public WekaNaiveClassifierJob() {
+	public AbstractWekaNaiveClassifierJob() {
 	}
 
 	public void setModel(Attribute[] model) {
@@ -33,12 +32,6 @@ public class WekaNaiveClassifierJob extends NaiveBayes implements ItemProcessor<
 			}
 		}
 		return options.toArray(new String[0]);
-	}
-
-	@Override
-	public Data process(final Data input) throws Exception {
-		buildClassifier(converterToInstance(input));
-		return populateModel();
 	}
 
 	public static Data populateModel() {

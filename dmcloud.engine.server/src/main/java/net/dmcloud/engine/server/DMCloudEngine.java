@@ -20,7 +20,6 @@ public class DMCloudEngine implements IDMCloudEngine
 	@Override
 	public Task getTask(String key) throws EventNotFoundException 
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
